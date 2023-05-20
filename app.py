@@ -1,6 +1,7 @@
 import openai
 from flask import Flask, render_template, request
 from dotenv import dotenv_values
+import json
 
 config = dotenv_values(".env")
 openai.api_key = config["OPENAI_API_KEY"]
@@ -40,11 +41,7 @@ def prompt_to_palette():
     query = request.form.get("query")
     colors = get_colors(query)
     app.logger.info(colors)
-
-
-# OPEN AI COMPLETION CALL
-
-# RETURN LIST OF COLORS
+    return {"colors": colors}
 
 
 @app.route("/")
