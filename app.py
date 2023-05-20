@@ -7,8 +7,13 @@ openai.api_key = config["OPENAI_API_KEY"]
 
 app = Flask(__name__, template_folder="templates")
 
-# @app.route("/palette", methids=["POST"])
-# def prompt_to_palette():
+
+@app.route("/palette", methids=["POST"])
+def prompt_to_palette():
+    app.logger.info("HIT THE POST REQUESTR ROUTE")
+    app.logger.info(request.form.get("query"))
+
+
 # OPEN AI COMPLETION CALL
 
 # RETURN LIST OF COLORS
