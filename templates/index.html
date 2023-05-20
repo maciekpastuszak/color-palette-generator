@@ -18,7 +18,21 @@
 
 
     <script>
-
+        const form = document.querySelector("#form");
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            console.log(form.elements.query.value)
+            fetch("/palette", {
+                method: "POST",
+                body: {
+                    query: query
+                }
+            })
+                .then((response) => response.json())
+                .then(data => {
+                    console.log(data)
+                })
+        })
     </script>
 </body>
 
