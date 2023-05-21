@@ -53,7 +53,8 @@
                     for (const color of colors) {
                         const div = document.createElement("div");
                         div.style.backgroundColor = color;
-                    }
+                        div.style.width = `calc(100%/ ${colors.length}`)
+        }
 
                     container.appendChild(div)
 
