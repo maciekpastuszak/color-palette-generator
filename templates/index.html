@@ -49,6 +49,10 @@
                 .then((response) => response.json())
                 .then(data => {
                     const colors = data.colors;
+                    const container = document.querySelector(".container");
+                    for (const color of colors) {
+                        const div = document.createElement("div");
+                    }
 
                 })
         })
