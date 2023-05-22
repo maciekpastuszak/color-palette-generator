@@ -79,3 +79,18 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
           }
+
+          .alert {
+            display: none;
+            padding: 20px;
+            background-color: #fc4a3e;
+            color: white;
+            opacity: 1;
+            transition: opacity 0.6s;
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            z-index: 9999;
+            border-radius: 4px;
+            transform: translate(-50%, 0);
+          }

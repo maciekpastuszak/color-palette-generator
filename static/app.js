@@ -29,7 +29,6 @@ function getColors() {
         const colors = data.colors;
         const container = document.querySelector(".container");
         createColorBoxes(colors, container);
-        loader.style.display = "none"; // Hide the loader on successful return
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -39,6 +38,7 @@ function getColors() {
   
 
 function createColorBoxes(colors, container){
+    var alertBox = document.getElementById("alertBox");
     container.innerHTML = "";
     for (const color of colors) {
         const div = document.createElement("div");
@@ -47,6 +47,17 @@ function createColorBoxes(colors, container){
         div.style.width = `calc(100%/ ${colors.length})`
 
         div.addEventListener("click", function () {
+            alertBox.style.display = "block";
+
+            setTimeout(function() {
+                alertBox.style.opacity = "0";
+                setTimeout(function() {
+                  alertBox.style.display = "none";
+                  alertBox.style.opacity = "1";
+                }, 600); // Transition duration is 0.6s in the CSS
+              }, 1000); // 1 seconds
+            
+
             navigator.clipboard.writeText(color);
         })
 
