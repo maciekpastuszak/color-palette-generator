@@ -5,24 +5,38 @@ form.addEventListener("submit", function (e) {
     getColors();
 });
 
-function getColors(){
-    const query = form.elements.query.value
+function getColors() {
+    const form = document.getElementById("form");
+    const loader = document.querySelector(".loader");
+  
+    loader.style.display = "block"; // Hide the loader by default
+  
+    const query = form.elements.query.value;
     fetch("/palette", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: new URLSearchParams({
-            query: query
-        }),
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: new URLSearchParams({
+        query: query
+      })
     })
-        .then((response) => response.json())
-        .then(data => {
-            const colors = data.colors;
-            const container = document.querySelector(".container");
-            createColorBoxes(colors, container);
-        });
-}
+      .then((response) => {
+        loader.style.display = "none"; // Show the loader when the request starts
+        return response.json();
+      })
+      .then((data) => {
+        const colors = data.colors;
+        const container = document.querySelector(".container");
+        createColorBoxes(colors, container);
+        loader.style.display = "none"; // Hide the loader on successful return
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        loader.style.display = "none"; // Hide the loader on error
+      });
+  }
+  
 
 function createColorBoxes(colors, container){
     container.innerHTML = "";
