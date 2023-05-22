@@ -56,10 +56,12 @@
                         div.classList.add("color");
                         div.style.backgroundColor = color;
                         div.style.width = `calc(100%/ ${colors.length})`
+
+                        const span = document.createElement("span");
+                        span.innerText = color;
+                        div.appendChild(span);
+                        container.appendChild(div);
                     }
-
-                    container.appendChild(div)
-
                 })
         })
     </script>
